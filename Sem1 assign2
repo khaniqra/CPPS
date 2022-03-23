@@ -1,0 +1,46 @@
+/*Name:Iqra Khan
+Roll no. L1256
+Problem statement A hotel has a pricing policy as follows:-
+Stay for 2 person : 2500Rs. per night
+Stay for 3 person : 3500Rs. per night
+Stay for 4 person : 4500Rs. per night
+Additional person : 1000Rs. per person per night
+If the customer is staying on company business tour, there is a 20% discount. Take the
+number of people, number of night staying, if it&#39;s business tour or not as input from user.
+Write a programt to calculate and print the cost of the room.*/
+
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int no_of_people, nights, base, discount, total;
+    int business_tour;
+
+    printf("Welcome to our hotel\n");
+
+    printf("Enter no of people:");
+    scanf("%d",&no_of_people);
+    printf("Enter no of nights stay:");
+    scanf("%d",&nights);
+    printf("Is it a business tour(1/0):");
+    scanf(" %d",&business_tour);
+
+        base=(500+no_of_people*1000)*nights;
+        if(business_tour)
+        {
+            discount = 0.2*base;
+            printf("Your discount is Rs.%d\n",discount);
+            total= base-0.2*base;
+            printf("Your total cost is Rs.%d\n",total);
+        }
+
+        else
+        {
+
+            total=base;
+            printf("Your total cost is Rs.%d",total);
+        }
+
+    return 0;
+}
+
