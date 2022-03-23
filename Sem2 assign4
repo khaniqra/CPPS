@@ -1,0 +1,28 @@
+/* Name:- Iqra Khan 
+   Roll No.- FY20L1256
+   Assignment 4 sem 2
+   Problem statement:- Write a program to generate a fibonnaci series using recursive function.
+*/
+
+#include <stdio.h>
+
+int fibonacci(int i){
+  if(i==0){
+    return 0;
+  }
+  if(i==1){
+    return 1;
+  }
+  return fibonacci(i-1)+fibonacci(i-2);
+}
+
+int main(){
+  int i,n;
+  printf("Range for Fibonacci series:");
+  scanf("%d",&n);
+
+  for(i=0; i<n;i++){
+    printf("%d\t\n", fibonacci(i));
+  }
+  return 0;
+}
