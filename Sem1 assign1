@@ -1,0 +1,37 @@
+/*Name:Iqra Khan 
+Roll no. L1256
+Problem statement:Write a program to calculate salary of an employee given his basic pay (take as input
+from user). Calculate gross salary of employee. Let HRA be 10% of basic pay and TA be
+5% of basic pay. Let employee pay professional tax as 2% of total salary. Calculate net
+salary payable after deductions.
+*/
+
+#include<stdio.h>
+
+int main()
+{
+    int basic_pay;
+    int HRA;
+    int TA;
+    int gross_salary;
+    int PT;
+    int net_salary;
+
+    printf("Enter Basic Pay:");
+    scanf("%d",&basic_pay);
+
+    HRA = (10*basic_pay)/100;
+    TA = (5*basic_pay)/100;
+    gross_salary= basic_pay+HRA+TA;
+
+    printf("Gross Salary:%d\n",gross_salary);
+
+    PT= (2*gross_salary)/100;
+    net_salary= gross_salary - PT;
+
+    printf("Net Salary:%d\n",net_salary);
+
+    return 0;
+
+
+    }
