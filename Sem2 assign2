@@ -1,0 +1,117 @@
+/*
+Name: Iqra Khan
+Roll: FY20L1256   
+Sem: 2    Assignment: 2
+Problem Statement: A class teacher wants to keep record of 10 students in the class along with the names and marks
+obtained in 5 subjects. Write a C program with function that displays
+	a) Name of the student with highest marks in a particular subject.
+	b) Overall percentage result of the class
+	c) Total number of passing students in the class,
+	d) Total number of students failing in one subject
+	e) Total number of distinctions in the class.
+*/
+
+
+
+#include <stdio.h>
+
+int findmax(int arr[]);
+int percentage(int arr[]);
+
+int main() {
+	int roll[10];
+	char name[10][20];
+	int cpps[10];
+	int maths[10];
+  int mech[10];
+  int phy[10];
+  int graphics[10];
+
+	for(int i = 0; i <10; i++) {
+		printf("Enter Roll Number: ");
+		scanf("%d", &roll[i]);
+		printf("Enter Name: ");
+		scanf("%s", name[i]);
+		printf("Enter CPPS Score: ");
+		scanf("%d", &cpps[i]);
+		printf("Enter Maths Score: ");
+		scanf("%d", &maths[i]);
+    printf("Enter Mech Score: ");
+		scanf("%d", &mech[i]);
+    printf("Enter Physics Score: ");
+		scanf("%d", &phy[i]);
+    printf("Enter Graphics Score: ");
+		scanf("%d", &graphics[i]);
+    
+	}
+
+  printf("\n roll no \t name \t CPPS \t Maths \t Mech \t Physics \t Graphics");
+  for(int i=0; i<10; i++)
+  {
+    printf("\n %d \t %s \t %d \t %d \t %d \t %d \t %d ", roll[i],name[i],cpps[i], maths[i], mech[i], phy[i], graphics[i]);
+  }
+
+
+	printf("\nMaximum in CPPS is: %d", findmax(cpps));
+	printf("\nMaximum in Maths is: %d", findmax(maths));
+  printf("\nMaximum in Physics is: %d", findmax(phy));
+  printf("\nMaximum in Mech is: %d", findmax(mech));
+  printf("\nMaximum in Graphics is: %d", findmax(graphics));
+
+
+int p_cpps= percentage(cpps);
+int p_maths= percentage(maths);
+int p_mech = percentage(mech);
+int p_phy = percentage(phy);
+int p_gr = percentage(graphics);
+float total_p = (p_cpps+p_mech+p_maths+p_phy+p_gr)/5;
+printf("\n The overall percentage of class is: %f" ,total_p);
+
+int total_fail = 0;
+	for(int i = 0; i <10; i++) {
+		if(
+			cpps[i] < 30 ||
+			maths[i] < 30 ||
+			graphics[i] < 30 ||
+			phy[i] < 30 ||
+			mech[i] < 30
+		) 
+			total_fail++;
+		
+	}
+
+	printf("\n Total number of passing students in the class: %d\n", 10 - total_fail);
+
+  for(int i=0;i<5;i++)
+  {
+    int sum = cpps[i]+maths[i]+mech[i]+phy[i]+graphics[i];
+    int d = sum/5;
+    if(d>75){
+      printf("%s has got distinction",name[i]);
+    }
+  }
+}
+
+int findmax(int arr[]) {
+	int max = arr[0];
+	//int index = 0;
+	for(int i = 1; i < 10; i++) {
+		if(arr[i] > max) {
+			max = arr[i];
+			//index = i;
+		}
+	}
+	return max;
+}
+
+int percentage(int arr[])
+{
+  int sum =0;
+  for(int i=0; i<5; i++)
+  {
+    sum += arr[i];
+  }
+  int p=sum/5;
+  return p;
+}
+
