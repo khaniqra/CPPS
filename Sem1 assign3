@@ -1,0 +1,44 @@
+/*L1256 IQRA KHAN Assign 3
+problem statement Write a program to accept marks of five courses and compute the result. If student scores
+aggregate greater than 75%, then the grade is distinction. If aggregate is 60&gt;= and &lt;75
+then the grade is first division. If aggregate is 50&gt;= and &lt;60, then the grade is second
+division. If aggregate is 40&gt;= and &lt;50 then the grade is third division. If aggregate is &lt;
+40 then student is fail.*/
+#include<stdio.h>
+int main()
+{
+    float m1,m2,m3,m4,m5,average_marks;
+
+
+    printf("Enter marks of the five subjects:");
+    scanf("%f %f %f %f %f", &m1,&m2,&m3,&m4,&m5);
+
+    average_marks = ((m1+m2+m3+m4+m5)/500)*100;
+    printf("Your aggregate percentage is:%.2f\n",average_marks);
+
+    if(m1<0||m2<0||m3<0||m4<0||m5<0||m1>100||m2>100||m3>100||m4>100||m5>100)
+    {
+       printf("Wrong entries");
+    }
+    if (average_marks>=75)
+    {
+        printf("Distinction");
+    }
+    else if (average_marks>=60 && average_marks<75)
+    {
+        printf("First division");
+    }
+    else if (average_marks>=50 && average_marks<60)
+    {
+        printf("Second class");
+    }
+    else if(average_marks>=40 && average_marks<50)
+    {
+        printf("Third class");
+    }
+    else
+    {
+        printf("Fail");
+    }
+    return 0;
+}
