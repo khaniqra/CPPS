@@ -1,0 +1,29 @@
+/*Name: Iqra Khan
+Roll no. FY20L1256   ASSIGN 8
+Problem st.:Write a program to accept n number of element from user (where, n is specified by user)
+and stores data in an array and display the largest element of that array using loops.*/
+
+#include <stdio.h>
+int main()
+{
+    int size, num[100];
+
+    printf("Plz enter the size of array:");
+    scanf("%d", &size);
+
+    printf("Enter %d elements of the array: ",size);
+    for(int i = 0; i < size; i++) {
+      scanf("%d", &num[i]);
+    }
+
+    int largest = num[0];
+
+    for(int i = 1; i < size; i++) {
+      if(largest < num[i]) {
+        largest = num[i];
+      }
+    }
+
+    printf("Largest Number is %d\n", largest);
+    return 0;
+}
