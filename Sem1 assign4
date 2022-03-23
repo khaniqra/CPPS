@@ -1,0 +1,21 @@
+/*L1256 IQRA KHAN
+Problem statement Write a program to find the largest number using ternary operator among : two numbers,
+three numbers, four numbers.*/
+#include<stdio.h>
+
+int main()
+{
+    int n1,n2,n3,n4, max_1_2,max_1_2_3, max_1_2_3_4;
+
+    printf("Enter four nos.");
+    scanf("%d %d %d %d",&n1,&n2,&n3,&n4);
+
+    max_1_2 = (n1>n2?n1:n2);
+    printf("The greater no. between %d and %d is %d\n",n1,n2,max_1_2);
+
+    max_1_2_3 = ((n1>n2 && n1>n3)?n1:((n2>n3)?n2:n3));
+    printf("The greater no. among %d %d %d is %d\n",n1,n2,n3,max_1_2_3);
+
+    max_1_2_3_4 = ((n1>n2 && n1>n3 && n1>n4) ? n1 :((n2>n3 && n2>n4) ? n2 :(n3>n4?n3:n4)));
+    printf("The greatest no. among %d %d %d %d is %d\n",n1,n2,n3,n4,max_1_2_3_4);
+}
