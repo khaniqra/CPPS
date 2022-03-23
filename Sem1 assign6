@@ -1,0 +1,36 @@
+/*
+Name: Iqra Khan
+Roll: FY20L1256
+Assignment: 6
+Subject: Accept bank account number from user and identify the last four digits of the account number. Write a program to print the last four digits from the account number separately.
+*/
+
+#include<stdio.h>
+int main()
+{
+    int ac_no;
+    int n,last_four;
+
+    printf("Enter your account number:");
+    scanf("%d",&ac_no);
+
+    printf("thank you");
+
+    n=sizeof(ac_no);
+
+   if(n>10)
+    {
+      printf("\nPlease enter a valid bank account number");
+    }
+    else
+    {
+      last_four= ac_no % 10000;
+      printf("\nThe last four digits of your bank account no. is:%d",last_four);
+       
+        
+    }
+return 0;
+
+}
+
+
