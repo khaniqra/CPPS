@@ -1,0 +1,582 @@
+/*                 CPPS MINI PROJECT 
+                    PERIODIC TABLE
+Team members:  
+Iqra Khan (FY20L1256)
+Madhur Kharche (FY20L1257)
+Kaustubh Jagtap (FY20L1246)
+Shreyas Dashpute (FY20L1225)
+
+Problem statement:-To ask user to select the operation they want to perform, ask them to  give the atomic number or name to the element to be searched or else the name of the two elements whose properties need to be compared and display the result accordingly.
+*/
+
+#include<stdio.h>
+#include<string.h>
+
+struct Element{
+    int oxidation_states[10];
+    float Atomic_Mass;
+    char Symbol[3];
+    union{
+    char name[13];
+    int Atomic_No;
+    };
+}e[50];
+
+// Setting up the Values
+void Initialize(){
+    e[0].Atomic_No=1;
+    e[0].Atomic_Mass = 1.00784;
+    strcpy(e[0].name , "Hydrogen");
+    strcpy(e[0].Symbol , "H");
+    e[0].oxidation_states[0]=-1; e[0].oxidation_states[1]=+1;
+ 
+    e[1].Atomic_No=2;
+    e[1].Atomic_Mass = 4.0026;
+    strcpy(e[1].name , "Helium");
+    strcpy(e[1].Symbol , "He");
+    e[1].oxidation_states[0]=9;
+    
+    e[2].Atomic_No=3;
+    e[2].Atomic_Mass = 6.941;
+    strcpy(e[2].name , "Lithium");
+    strcpy(e[2].Symbol , "Li");
+    e[2].oxidation_states[0]=1;
+
+    e[3].Atomic_No=4;
+    e[3].Atomic_Mass = 9.0121;
+    strcpy(e[3].name , "Beryllium");
+    strcpy(e[3].Symbol , "Be");
+    e[3].oxidation_states[0]=1; e[3].oxidation_states[1]=2;
+
+    e[4].Atomic_No=5;
+    e[4].Atomic_Mass = 10.811;
+    strcpy(e[4].name , "Boron");
+    strcpy(e[4].Symbol , "B");
+     e[4].oxidation_states[0]=-3; e[4].oxidation_states[1]=-1;e[4].oxidation_states[2]=9;
+     e[4].oxidation_states[3]=1; e[4].oxidation_states[4]=2; e[4].oxidation_states[5]=3;
+
+    e[5].Atomic_No=6;
+    e[5].Atomic_Mass = 12.0107;
+    strcpy(e[5].name , "Carbon");
+    strcpy(e[5].Symbol , "C");
+    e[5].oxidation_states[0]=1;e[5].oxidation_states[1]=2;
+
+    e[6].Atomic_No=7;
+    e[6].Atomic_Mass = 14.0067;
+    strcpy(e[6].name , "Nitrogen");
+    strcpy(e[6].Symbol , "N");
+    e[6].oxidation_states[0]=-3; e[6].oxidation_states[1]=-2; e[6].oxidation_states[2]=-1; e[6].oxidation_states[3]=9;
+    e[6].oxidation_states[4]=1; e[6].oxidation_states[5]=2; e[6].oxidation_states[6]=3; e[6].oxidation_states[7]=4;
+    e[6].oxidation_states[8]=5;
+
+    e[7].Atomic_No=8;
+    e[7].Atomic_Mass = 15.9994;
+    strcpy(e[7].name , "Oxygen");
+    strcpy(e[7].Symbol , "O");
+    e[7].oxidation_states[0]=-2; e[7].oxidation_states[1]=-1; e[7].oxidation_states[2]=9;
+    e[7].oxidation_states[3]=1;  e[7].oxidation_states[4]=2;
+   
+    e[8].Atomic_No=9;
+    e[8].Atomic_Mass = 18.9984;
+    strcpy(e[8].name , "Fluorine");
+    strcpy(e[8].Symbol ,"F");
+    e[8].oxidation_states[0]=-1;
+    
+    e[9].Atomic_No=10;
+    e[9].Atomic_Mass = 20.1797;
+    strcpy(e[9].name , "Neon");
+    strcpy(e[9].Symbol , "Ne");
+    e[9].oxidation_states[0]=9;
+  
+    e[10].Atomic_No=11;
+    e[10].Atomic_Mass = 22.9897;
+    strcpy(e[10].name , "Sodium");
+    strcpy(e[10].Symbol , "Na");
+    e[10].oxidation_states[0]=9; e[10].oxidation_states[0]=1;
+    
+    e[11].Atomic_No=12;
+    e[11].Atomic_Mass = 24.3050;
+    strcpy(e[11].name , "Magnesium");
+    strcpy(e[11].Symbol , "Mg");
+    e[11].oxidation_states[0]=9; e[11].oxidation_states[1]=1; e[11].oxidation_states[1]=2;
+
+    e[12].Atomic_No=13;
+    e[12].Atomic_Mass = 26.9815;
+    strcpy(e[12].name , "Aluminium");
+    strcpy(e[12].Symbol , "Al");
+    e[12].oxidation_states[0]=9; e[12].oxidation_states[1]=3;
+
+    e[13].Atomic_No=14;
+    e[13].Atomic_Mass = 28.0855;
+    strcpy(e[13].name , "Silicon");
+    strcpy(e[13].Symbol , "Si");
+    e[13].oxidation_states[0]=-4; e[13].oxidation_states[1]=-3; e[13].oxidation_states[2]=-2; 
+    e[13].oxidation_states[3]=-1; e[13].oxidation_states[4]=0;  e[13].oxidation_states[5]=1; 
+    e[13].oxidation_states[6]=2; e[13].oxidation_states[7]=3; e[13].oxidation_states[8]=4;
+
+    e[14].Atomic_No=15;
+    e[14].Atomic_Mass = 30.9737;
+    strcpy(e[14].name , "Phosphorous");
+    strcpy(e[14].Symbol ,"P");
+    e[14].oxidation_states[0]=-3; e[14].oxidation_states[1]=-2; e[14].oxidation_states[2]=-1;e[14].oxidation_states[3]=9;
+    e[14].oxidation_states[4]=1;e[14].oxidation_states[5]=2;e[14].oxidation_states[6]=3;
+    e[14].oxidation_states[7]=4; e[14].oxidation_states[8]=5;
+
+    e[15].Atomic_No=16;
+    e[15].Atomic_Mass = 32.065;
+    strcpy(e[15].name , "Sulphur");
+    strcpy(e[15].Symbol , "S");
+    e[15].oxidation_states[0]=-2; e[15].oxidation_states[1]=-1;  e[15].oxidation_states[2]=9; e[15].oxidation_states[3]=1;
+    e[15].oxidation_states[4]=2; e[15].oxidation_states[5]=3; e[15].oxidation_states[6]=4;
+    e[15].oxidation_states[7]=5;  e[15].oxidation_states[8]=6;
+
+    e[16].Atomic_No=17;
+    e[16].Atomic_Mass = 35.453;
+    strcpy(e[16].name , "Chlorine");
+    strcpy(e[16].Symbol , "Cl");
+    e[16].oxidation_states[0]=-1; e[16].oxidation_states[1]=9;e[16].oxidation_states[2]=1;e[16].oxidation_states[3]=2;
+    e[16].oxidation_states[4]=3;e[16].oxidation_states[5]=4; e[16].oxidation_states[6]=5;e[16].oxidation_states[7]=6;
+    e[16].oxidation_states[8]=7;
+    
+    e[17].Atomic_No=18;
+    e[17].Atomic_Mass = 39.948;
+    strcpy(e[17].name , "Argon");
+    strcpy(e[17].Symbol , "Ar");
+    e[17].oxidation_states[0]=9;
+
+    e[18].Atomic_No=19;
+    e[18].Atomic_Mass = 39.0983;
+    strcpy(e[18].name , "Potassium");
+    strcpy(e[18].Symbol , "K");
+    e[18].oxidation_states[0]=1;
+
+    e[19].Atomic_No=20;
+    e[19].Atomic_Mass = 40.078;
+    strcpy(e[19].name , "Calcium");
+    strcpy(e[19].Symbol , "Ca");
+    e[19].oxidation_states[0]=2;   
+
+    e[20].Atomic_No=21;
+    e[20].Atomic_Mass=44.9559;
+    strcpy(e[20].name,"Scandium");
+    strcpy(e[20].Symbol , "Sc");
+    e[20].oxidation_states[0]=1; e[20].oxidation_states[1]=2; e[20].oxidation_states[2]=3;
+
+    e[21].Atomic_No=22;
+    e[21].Atomic_Mass=47.867;
+    strcpy(e[21].name,"Titanium");
+    strcpy(e[21].Symbol , "Ti");
+e[21].oxidation_states[0]=1; e[21].oxidation_states[1]=2; e[21].oxidation_states[2]=3; e[21].oxidation_states[3]=4;
+    
+    e[22].Atomic_No=23;
+    e[22].Atomic_Mass=50.9415;
+    strcpy(e[22].name,"Vanadium");
+    strcpy(e[22].Symbol , "V");
+    e[22].oxidation_states[0]=1; e[22].oxidation_states[1]=2; e[22].oxidation_states[2]=3;
+    e[22].oxidation_states[3]=4; e[22].oxidation_states[4]=5;
+
+    e[23].Atomic_No=24;
+    e[23].Atomic_Mass=51.9961;
+    strcpy(e[23].name, "Chromium");
+    strcpy(e[23].Symbol , "Cr");
+e[23].oxidation_states[0]=1; e[23].oxidation_states[1]=2; e[23].oxidation_states[2]=3;
+e[23].oxidation_states[3]=4; e[23].oxidation_states[4]=5; e[23].oxidation_states[5]=6;
+
+    e[24].Atomic_No=25;
+    e[24].Atomic_Mass=54.9380;
+    strcpy(e[24].name,"Manganese");
+    strcpy(e[24].Symbol , "Mn");
+e[24].oxidation_states[0]=1; e[24].oxidation_states[1]=2; e[24].oxidation_states[2]=3; e[24].oxidation_states[3]=4;
+    e[24].oxidation_states[4]=5; e[24].oxidation_states[5]=6; e[24].oxidation_states[6]=7;
+
+    e[25].Atomic_No=26;
+    e[25].Atomic_Mass=55.845;
+    strcpy(e[25].name,"Iron");
+    strcpy(e[25].Symbol , "Fe");
+    e[25].oxidation_states[0]=1; e[25].oxidation_states[1]=2; e[25].oxidation_states[2]=3;
+    e[25].oxidation_states[3]=4; e[25].oxidation_states[4]=5; e[25].oxidation_states[5]=6;
+
+    e[26].Atomic_No=27;
+    e[26].Atomic_Mass=58.9331;
+    strcpy(e[26].name,"Cobalt");
+    strcpy(e[26].Symbol , "Co");
+e[26].oxidation_states[0]=1; e[26].oxidation_states[1]=2; e[26].oxidation_states[2]=3;
+    e[26].oxidation_states[3]=4;  e[26].oxidation_states[4]=5;
+
+    e[27].Atomic_No=28;
+    e[27].Atomic_Mass=58.6934;
+    strcpy(e[27].name,"Nickel");
+    strcpy(e[27].Symbol , "Ni");
+e[27].oxidation_states[0]=1; e[27].oxidation_states[1]=2; e[27].oxidation_states[2]=3; e[27].oxidation_states[3]=4;
+
+    e[28].Atomic_No=29;
+    e[28].Atomic_Mass=63.546;
+    strcpy(e[28].name,"Copper");
+    strcpy(e[28].Symbol , "Cu");
+    e[28].oxidation_states[0]=1; e[28].oxidation_states[1]=2;
+
+    e[29].Atomic_No=30;
+    e[29].Atomic_Mass=65.38;
+    strcpy(e[29].name,"Zinc");
+    strcpy(e[29].Symbol , "Zn");
+    e[29].oxidation_states[0]=2;
+    
+    e[30].Atomic_No=31;
+    e[30].Atomic_Mass=69.723;
+    strcpy(e[30].name,"Gallium");
+    strcpy(e[30].Symbol , "Ga");
+    e[30].oxidation_states[0]=1; e[30].oxidation_states[1]=2; e[30].oxidation_states[2]=3;
+
+    e[31].Atomic_No=32;
+    e[31].Atomic_Mass=72.64;
+    strcpy(e[31].name,"Germanium");
+    strcpy(e[31].Symbol , "Ge");
+e[31].oxidation_states[0]=-4; e[31].oxidation_states[1]=1; e[31].oxidation_states[2]=2;
+e[31].oxidation_states[3]=3; e[31].oxidation_states[4]=4;
+
+    e[32].Atomic_No=33;
+    e[32].Atomic_Mass=74.9216;
+    strcpy(e[32].name,"Arsenic");
+    strcpy(e[32].Symbol , "As");
+e[32].oxidation_states[0]=-3;e[32].oxidation_states[1]=2;e[32].oxidation_states[2]=3;e[32].oxidation_states[3]=5;
+
+    e[33].Atomic_No=34;
+    e[33].Atomic_Mass=78.96;
+    strcpy(e[33].name,"Selenium");
+    strcpy(e[33].Symbol , "Se");
+    e[33].oxidation_states[0]=-2; e[33].oxidation_states[1]=2;
+    e[33].oxidation_states[2]=4; e[33].oxidation_states[3]=6;
+
+    e[34].Atomic_No=35;
+    e[34].Atomic_Mass=79.904;
+    strcpy(e[34].name,"Bromine");
+    strcpy(e[34].Symbol , "Br");
+    e[34].oxidation_states[0]=-1; e[34].oxidation_states[1]=2; e[34].oxidation_states[2]=3;
+    e[34].oxidation_states[2]=4; e[34].oxidation_states[2]=5; e[34].oxidation_states[2]=7;
+    
+    e[35].Atomic_No=36;
+    e[35].Atomic_Mass=83.798;
+    strcpy(e[35].name,"Krypton");
+    strcpy(e[35].Symbol , "Kr");
+    e[35].oxidation_states[0]=9; e[35].oxidation_states[1]=2;
+
+    e[36].Atomic_No=37;
+    e[36].Atomic_Mass=85.467;
+    strcpy(e[36].name,"Rubidium");
+    strcpy(e[36].Symbol , "Rb");
+    e[36].oxidation_states[0]=-11; e[36].oxidation_states[1]=0; e[36].oxidation_states[2]=1;
+
+    e[37].Atomic_No=38;
+    e[37].Atomic_Mass=87.62;
+    strcpy(e[37].name,"Strontium");
+    strcpy(e[37].Symbol , "Sr");
+    e[37].oxidation_states[0]=1; e[37].oxidation_states[1]=2;
+
+     e[38].Atomic_No=39;
+    e[38].Atomic_Mass=88.905;
+    strcpy(e[38].name,"Yttrium");
+    strcpy(e[38].Symbol , "Y");
+    e[38].oxidation_states[0]=1; e[38].oxidation_states[1]=2; e[38].oxidation_states[2]=3;
+
+     e[39].Atomic_No=40;
+    e[39].Atomic_Mass=91.224;
+    strcpy(e[39].name,"Zirconium");
+    strcpy(e[39].Symbol , "Zr");
+e[39].oxidation_states[0]=1; e[39].oxidation_states[1]=2; e[39].oxidation_states[2]=3 ; e[39].oxidation_states[3]=4;
+
+     e[40].Atomic_No=41;
+    e[40].Atomic_Mass=92.906;
+    strcpy(e[40].name,"Niobium");
+    strcpy(e[40].Symbol , "Nb");
+e[40].oxidation_states[0]=-1; e[40].oxidation_states[1]=2; e[40].oxidation_states[2]=3; 
+e[40].oxidation_states[3]=4; e[40].oxidation_states[4]=5;
+
+     e[41].Atomic_No=42;
+    e[41].Atomic_Mass=95.94;
+    strcpy(e[41].name,"Molybdenum");
+    strcpy(e[41].Symbol , "Mo");
+e[41].oxidation_states[0]=-2; e[41].oxidation_states[1]=-1; e[41].oxidation_states[2]=1; e[41].oxidation_states[3]=2;
+e[41].oxidation_states[4]=3; e[41].oxidation_states[5]=4;e[41].oxidation_states[6]=5;e[41].oxidation_states[7]=6;
+
+     e[42].Atomic_No=43;
+    e[42].Atomic_Mass=98.906;
+    strcpy(e[42].name,"Technetium");
+    strcpy(e[42].Symbol , "Tc");
+e[42].oxidation_states[0]=-3; e[42].oxidation_states[1]=-1; e[42].oxidation_states[2]=1; 
+e[42].oxidation_states[3]=2; e[42].oxidation_states[4]=3; e[42].oxidation_states[5]=4; 
+
+    e[14].Atomic_No=15;
+    e[14].Atomic_Mass = 30.9737;
+    strcpy(e[14].name , "Phosphorous");
+    strcpy(e[14].Symbol ,"P");
+    e[14].oxidation_states[0]=-3; e[14].oxidation_states[1]=-2; e[14].oxidation_states[2]=-1;e[14].oxidation_states[3]=9;
+    e[14].oxidation_states[4]=1;e[14].oxidation_states[5]=2;e[14].oxidation_states[6]=3;
+    e[14].oxidation_states[7]=4; e[14].oxidation_states[8]=5;
+
+    e[15].Atomic_No=16;
+    e[15].Atomic_Mass = 32.065;
+    strcpy(e[15].name , "Sulphur");
+    strcpy(e[15].Symbol , "S");
+    e[15].oxidation_states[0]=-2; e[15].oxidation_states[1]=-1;  e[15].oxidation_states[2]=9; e[15].oxidation_states[3]=1;
+    e[15].oxidation_states[4]=2; e[15].oxidation_states[5]=3; e[15].oxidation_states[6]=4;
+    e[15].oxidation_states[7]=5;  e[15].oxidation_states[8]=6;
+
+    e[16].Atomic_No=17;
+    e[16].Atomic_Mass = 35.453;
+    strcpy(e[16].name , "Chlorine");
+    strcpy(e[16].Symbol , "Cl");
+    e[16].oxidation_states[0]=-1; e[16].oxidation_states[1]=9;e[16].oxidation_states[2]=1;e[16].oxidation_states[3]=2;
+    e[16].oxidation_states[4]=3;e[16].oxidation_states[5]=4; e[16].oxidation_states[6]=5;e[16].oxidation_states[7]=6;
+    e[16].oxidation_states[8]=7;
+    
+    e[17].Atomic_No=18;
+    e[17].Atomic_Mass = 39.948;
+    strcpy(e[17].name , "Argon");
+    strcpy(e[17].Symbol , "Ar");
+    e[17].oxidation_states[0]=9;
+
+    e[18].Atomic_No=19;
+    e[18].Atomic_Mass = 39.0983;
+    strcpy(e[18].name , "Potassium");
+    strcpy(e[18].Symbol , "K");
+    e[18].oxidation_states[0]=1;
+
+    e[19].Atomic_No=20;
+    e[19].Atomic_Mass = 40.078;
+    strcpy(e[19].name , "Calcium");
+    strcpy(e[19].Symbol , "Ca");
+    e[19].oxidation_states[0]=2;   
+
+    e[20].Atomic_No=21;
+    e[20].Atomic_Mass=44.9559;
+    strcpy(e[20].name,"Scandium");
+    strcpy(e[20].Symbol , "Sc");
+    e[20].oxidation_states[0]=1; e[20].oxidation_states[1]=2; e[20].oxidation_states[2]=3;
+
+    e[21].Atomic_No=22;
+    e[21].Atomic_Mass=47.867;
+    strcpy(e[21].name,"Titanium");
+    strcpy(e[21].Symbol , "Ti");
+e[21].oxidation_states[0]=1; e[21].oxidation_states[1]=2; e[21].oxidation_states[2]=3; e[21].oxidation_states[3]=4;
+    
+    e[22].Atomic_No=23;
+    e[22].Atomic_Mass=50.9415;
+    strcpy(e[22].name,"Vanadium");
+    strcpy(e[22].Symbol , "V");
+    e[22].oxidation_states[0]=1; e[22].oxidation_states[1]=2; e[22].oxidation_states[2]=3;
+    e[22].oxidation_states[3]=4; e[22].oxidation_states[4]=5;
+
+    e[23].Atomic_No=24;
+    e[23].Atomic_Mass=51.9961;
+    strcpy(e[23].name, "Chromium");
+    strcpy(e[23].Symbol , "Cr");
+e[23].oxidation_states[0]=1; e[23].oxidation_states[1]=2; e[23].oxidation_states[2]=3;
+e[23].oxidation_states[3]=4; e[23].oxidation_states[4]=5; e[23].oxidation_states[5]=6;
+
+    e[24].Atomic_No=25;
+    e[24].Atomic_Mass=54.9380;
+    strcpy(e[24].name,"Manganese");
+    strcpy(e[24].Symbol , "Mn");
+e[24].oxidation_states[0]=1; e[24].oxidation_states[1]=2; e[24].oxidation_states[2]=3; e[24].oxidation_states[3]=4;
+    e[24].oxidation_states[4]=5; e[24].oxidation_states[5]=6; e[24].oxidation_states[6]=7;
+
+    e[25].Atomic_No=26;
+    e[25].Atomic_Mass=55.845;
+    strcpy(e[25].name,"Iron");
+    strcpy(e[25].Symbol , "Fe");
+    e[25].oxidation_states[0]=1; e[25].oxidation_states[1]=2; e[25].oxidation_states[2]=3;
+    e[25].oxidation_states[3]=4; e[25].oxidation_states[4]=5; e[25].oxidation_states[5]=6;
+
+    e[26].Atomic_No=27;
+    e[26].Atomic_Mass=58.9331;
+    strcpy(e[26].name,"Cobalt");
+    strcpy(e[26].Symbol , "Co");
+e[26].oxidation_states[0]=1; e[26].oxidation_states[1]=2; e[26].oxidation_states[2]=3;
+    e[26].oxidation_states[3]=4;  e[26].oxidation_states[4]=5;
+
+    e[27].Atomic_No=28;
+    e[27].Atomic_Mass=58.6934;
+    strcpy(e[27].name,"Nickel");
+    strcpy(e[27].Symbol , "Ni");
+e[27].oxidation_states[0]=1; e[27].oxidation_states[1]=2; e[27].oxidation_states[2]=3; e[27].oxidation_states[3]=4;
+
+    e[28].Atomic_No=29;
+    e[28].Atomic_Mass=63.546;
+    strcpy(e[28].name,"Copper");
+    strcpy(e[28].Symbol , "Cu");
+    e[28].oxidation_states[0]=1; e[28].oxidation_states[1]=2;
+
+    e[29].Atomic_No=30;
+    e[29].Atomic_Mass=65.38;
+    strcpy(e[29].name,"Zinc");
+    strcpy(e[29].Symbol , "Zn");
+    e[29].oxidation_states[0]=2;
+    
+    e[30].Atomic_No=31;
+    e[30].Atomic_Mass=69.723;
+    strcpy(e[30].name,"Gallium");
+    strcpy(e[30].Symbol , "Ga");
+    e[30].oxidation_states[0]=1; e[30].oxidation_states[1]=2; e[30].oxidation_states[2]=3;
+
+    e[31].Atomic_No=32;
+    e[31].Atomic_Mass=72.64;
+    strcpy(e[31].name,"Germanium");
+    strcpy(e[31].Symbol , "Ge");
+e[31].oxidation_states[0]=-4; e[31].oxidation_states[1]=1; e[31].oxidation_states[2]=2;
+e[31].oxidation_states[3]=3; e[31].oxidation_states[4]=4;
+
+    e[32].Atomic_No=33;
+    e[32].Atomic_Mass=74.9216;
+    strcpy(e[32].name,"Arsenic");
+    strcpy(e[32].Symbol , "As");
+e[32].oxidation_states[0]=-3;e[32].oxidation_states[1]=2;e[32].oxidation_states[2]=3;e[32].oxidation_states[3]=5;
+
+    e[33].Atomic_No=34;
+    e[33].Atomic_Mass=78.96;
+    strcpy(e[33].name,"Selenium");
+    strcpy(e[33].Symbol , "Se");
+    e[33].oxidation_states[0]=-2; e[33].oxidation_states[1]=2;
+    e[33].oxidation_states[2]=4; e[33].oxidation_states[3]=6;
+
+    e[34].Atomic_No=35;
+    e[34].Atomic_Mass=79.904;
+    strcpy(e[34].name,"Bromine");
+    strcpy(e[34].Symbol , "Br");
+    e[34].oxidation_states[0]=-1; e[34].oxidation_states[1]=2; e[34].oxidation_states[2]=3;
+    e[34].oxidation_states[2]=4; e[34].oxidation_states[2]=5; e[34].oxidation_states[2]=7;
+    
+    e[35].Atomic_No=36;
+    e[35].Atomic_Mass=83.798;
+    strcpy(e[35].name,"Krypton");
+    strcpy(e[35].Symbol , "Kr");
+    e[35].oxidation_states[0]=9; e[35].oxidation_states[1]=2;
+
+    e[36].Atomic_No=37;
+    e[36].Atomic_Mass=85.467;
+    strcpy(e[36].name,"Rubidium");
+    strcpy(e[36].Symbol , "Rb");
+    e[36].oxidation_states[0]=-11; e[36].oxidation_states[1]=0; e[36].oxidation_states[2]=1;
+
+    e[37].Atomic_No=38;
+    e[37].Atomic_Mass=87.62;
+    strcpy(e[37].name,"Strontium");
+    strcpy(e[37].Symbol , "Sr");
+    e[37].oxidation_states[0]=1; e[37].oxidation_states[1]=2;
+
+     e[38].Atomic_No=39;
+    e[38].Atomic_Mass=88.905;
+    strcpy(e[38].name,"Yttrium");
+    strcpy(e[38].Symbol , "Y");
+    e[38].oxidation_states[0]=1; e[38].oxidation_states[1]=2; e[38].oxidation_states[2]=3;
+
+     e[39].Atomic_No=40;
+    e[39].Atomic_Mass=91.224;
+    strcpy(e[39].name,"Zirconium");
+    strcpy(e[39].Symbol , "Zr");
+e[39].oxidation_states[0]=1; e[39].oxidation_states[1]=2; e[39].oxidation_states[2]=3 ; e[39].oxidation_states[3]=4;
+
+     e[40].Atomic_No=41;
+    e[40].Atomic_Mass=92.906;
+    strcpy(e[40].name,"Niobium");
+    strcpy(e[40].Symbol , "Nb");
+e[40].oxidation_states[0]=-1; e[40].oxidation_states[1]=2; e[40].oxidation_states[2]=3; 
+e[40].oxidation_states[3]=4; e[40].oxidation_states[4]=5;
+
+     e[41].Atomic_No=42;
+    e[41].Atomic_Mass=95.94;
+    strcpy(e[41].name,"Molybdenum");
+    strcpy(e[41].Symbol , "Mo");
+e[41].oxidation_states[0]=-2; e[41].oxidation_states[1]=-1; e[41].oxidation_states[2]=1; e[41].oxidation_states[3]=2;
+e[41].oxidation_states[4]=3; e[41].oxidation_states[5]=4;e[41].oxidation_states[6]=5;e[41].oxidation_states[7]=6;
+
+     e[42].Atomic_No=43;
+    e[42].Atomic_Mass=98.906;
+    strcpy(e[42].name,"Technetium");
+    strcpy(e[42].Symbol , "Tc");
+e[42].oxidation_states[0]=-3; e[42].oxidation_states[1]=-1; e[42].oxidation_states[2]=1; 
+e[42].oxidation_states[3]=2; e[42].oxidation_states[4]=3; e[42].oxidation_states[5]=4; 
+for(k=0 ; k<46 ; k++){
+    if(strcmp(e[k].name,Name2)==0){
+        n2=k+1;
+        break;
+    }
+}
+}
+
+printf("\n  Category \t\t\t%s \t\t||\t\t %s",e[n1-1].name,e[n2-1].name);
+
+printf("\n1) Atomic Number \t\t%d\t\t ||\t\t\t %d",n1,n2);
+
+printf("\n2) Atomic Mass \t\t\t%.4f\t\t ||\t\t\t %.4f",e[n1-1].Atomic_Mass,e[n2-1].Atomic_Mass);
+
+printf("\n3) Symbol \t\t\t %s\t\t ||\t\t\t %s",e[n1-1].Symbol,e[n2-1].Symbol);
+
+printf("\n\n4) Oxidation States for %s : ",e[n1-1].name);
+
+int i=0;
+while (e[n1-1].oxidation_states[i]!=0)
+{
+    if(e[n1-1].oxidation_states[i]==9){
+        e[n1-1].oxidation_states[i]=0;
+    }
+    if(e[n1-1].oxidation_states[i]>0){
+    printf(" +%d , ",e[n1-1].oxidation_states[i]);
+    }
+    else{
+        printf(" %d ,",e[n1-1].oxidation_states[i]);
+    }
+    i++;
+}
+
+printf("\n   Oxidation States for %s : ",e[n2-1].name);
+ i=0;
+while (e[n2-1].oxidation_states[i]!=0)
+{
+    if(e[n2-1].oxidation_states[i]==9){
+        e[n2-1].oxidation_states[i]=0;
+    }
+    if(e[n2-1].oxidation_states[i]>0){
+    printf(" +%d , ",e[n2-1].oxidation_states[i]);
+    }
+    else{
+        printf(" %d ,",e[n2-1].oxidation_states[i]);
+    }
+    i++;
+}
+printf("\n");
+}
+
+// Main Function
+int main(){    
+    int choice=0;
+Initialize();
+again:
+printf("\n Enter the number corresponding to the operation you want : ");
+printf("\n 1) Display Information \t 2) Compare Elements");
+a:
+printf("\n\n Enter choice : ");
+scanf("%d",&choice);
+ 
+ switch (choice)
+ {
+    case 1 : Display();
+             break;
+    case 2 : Compare();
+             break;
+
+    default : printf("\n Please enter valid choice!");
+              goto a;
+}
+
+int repeat=0;
+printf("\n\n\n Do you want to perform operation again? ");
+printf(" \n Enter 0 : No \n Enter 1 : Yes \n Your choice : ");
+
+scanf("%d",&repeat);
+if(repeat == 1 ){
+    goto again;
+}
+
+printf("\n Thank You! We hope this helped you.\n");
+return 0;
+}
