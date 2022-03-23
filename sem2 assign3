@@ -1,0 +1,30 @@
+/*Name:- Iqra Khan
+  Roll n0. FY20L1256
+  Assignment 3 sem 2
+  Problem statement:- Write a program to swap vlaues of two elemnts. Use function and pass arguement using call by reference.
+*/
+#include <stdio.h>
+
+void swap(int *a,int *b);
+int main()
+{
+  int m,n;
+
+  printf("Enter value of numbers to be swapped:\n");
+  scanf("%d %d",&m,&n);
+
+  printf("Before swapping:\n m=%d n=%d\n", m,n);
+  swap(&m,&n);
+  printf("After swapping:-\n");
+  printf("m=%d\n",m);
+  printf("n=%d\n",n);
+  return 0;
+}
+
+void swap(int*a,int*b)
+{
+  int temp;
+  temp=*a;
+  *a = *b;
+  *b = temp;
+}
