@@ -1,0 +1,34 @@
+/* Name Iqra Khan 
+   Roll No. FY20L1256
+   Assignment 1 sem 2
+   Problem statement:- Write a program to compute the factorial of the given positive integer using function. 
+*/
+
+#include<stdio.h>
+int fact(int n);
+int main()
+{
+  int n,factorial;
+  printf("Enter a number: ");
+  scanf("%d",&n);
+  factorial= fact(n);
+  //printf("The factorial of given number is:%d\n",factorial);
+}
+
+int fact(int n)
+{
+  int f = 1;
+
+   if(n>=0)
+   {
+     for(int i=1;i<=n;i++)
+     f *= i;
+            printf("\nThe factorial is:%d",f);
+   }
+    else
+   {
+     printf("Number cannot be negative.");
+  }
+  return f;
+
+}
