@@ -1,0 +1,116 @@
+/*L1256 assign 5 SIMPLE CALC.
+Problem statement Write a program to simulate simple calculator that performs basic tasks such as addition,
+subtraction, multiplication and division with special operations like computing x y and x!. */
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    float a, b;
+    float add, subtract, multiply, divide;
+
+    char ch;
+
+    printf("Enter an operator: ");
+    //expression=getchar();
+    scanf(" %c",&ch);
+
+
+    switch(ch)
+    {
+
+    case '+':
+        {
+             printf("Enter a number1:");
+             scanf("%f",&a);
+
+             printf("Enter a number2:");
+             scanf("%f",&b);
+
+            add=a+b;
+            printf("Addition:%.2f\n",add);
+            break;
+        }
+   case '-':
+        {
+            printf("Enter a number1:");
+            scanf("%f",&a);
+
+            printf("Enter a number2:");
+            scanf("%f",&b);
+
+
+            subtract=a-b;
+            printf("Subtraction:%.2f\n",subtract);
+            break;
+        }
+    case '*':
+        {
+            printf("Enter a number1:");
+            scanf("%f",&a);
+
+            printf("Enter a number2:");
+            scanf("%f",&b);
+
+
+            multiply=a*b;
+            printf("Multiplication:%.2f\n",multiply);
+            break;
+        }
+    case '/':
+        {
+             printf("Enter a number1:");
+             scanf("%f",&a);
+
+             printf("Enter a number2:");
+             scanf("%f",&b);
+
+            divide=a/b;
+            if(b>0||b<0)
+                printf("Division:%.2f\n",divide);
+            else
+                printf("Cannot divide by zero");
+            break;
+        }
+   case '^':
+    {
+        int N,p;
+        int power;
+
+
+         printf("Enter a base value:");
+         scanf("%d",&N);
+
+         printf("\nEnter a power value:");
+         scanf("%d",&p);
+
+         power = pow(N,p);
+         printf("\nThe power value is:%d",power);
+         break;
+    }
+   case '!':
+    {
+        int n;
+        int factorial = 1;
+        printf("Enter a number:");
+        scanf("%d",&n);
+        if(n>=0)
+        {
+            for(int i=1;i<=n;i++)
+            factorial *= i;
+            printf("The factorial is:%d",factorial);
+        }
+        else
+        {
+            printf("Number cannot be negative.");
+        }
+        break;
+    }
+
+
+    default:
+    {
+       printf("Invalid input");
+    }
+    }
+    return 0;
+}
